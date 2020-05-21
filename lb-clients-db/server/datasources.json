@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "postgres": {
+    "host": "base",
+    "port": 5432,
+    "url": "",
+    "database": "uade",
+    "password": "2020",
+    "name": "postgres",
+    "user": "postgres",
+    "connector": "postgresql"
+  }
+}

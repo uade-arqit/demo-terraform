@@ -1,0 +1,28 @@
+version: '2'
+services:
+  db_data:
+    image: busybox
+    command: "true"
+    volumes:
+      - /var/lib/postgresql/data
+  base:
+    restart: always
+    image: postgres:9.5
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2020
+      - POSTGRES_DB=uade
+    volumes_from:
+      - db_data
+  be:
+    restart: always
+    image: lb-clients:0.1.0
+    command: node server/server.js
+    volumes:
+      - ./src/turnos-backoffice-be/:/code
+    links:
+      - base
+    ports:
+      - "3000:3000"
